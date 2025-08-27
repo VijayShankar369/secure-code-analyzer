@@ -1,0 +1,160 @@
+{
+  "version": "0.1.0",
+  "scan_info": {
+    "timestamp": 1756251595.772141,
+    "tool": "Secure Code Analyzer",
+    "version": "0.1.0"
+  },
+  "summary": {
+    "total_findings": 10,
+    "files_scanned": 1,
+    "duration_seconds": 0.01,
+    "severity_counts": {
+      "critical": 2,
+      "high": 4,
+      "medium": 4,
+      "low": 0,
+      "info": 0
+    },
+    "rule_counts": {
+      "js-xss-innerhtml": 2,
+      "js-eval-injection": 2,
+      "js-settimeout-string": 2,
+      "js-document-write": 2,
+      "js-insecure-random": 2
+    },
+    "scan_timestamp": 1756251595.7643013
+  },
+  "findings": [
+    {
+      "rule_id": "js-xss-innerhtml",
+      "title": "Cross-Site Scripting via innerHTML",
+      "message": "Potential XSS vulnerability: User input assigned to innerHTML.",
+      "severity": "high",
+      "confidence": "high",
+      "cwe": "CWE-79",
+      "owasp": "A07:2021 - XSS",
+      "file": "examples\\js-vuln-demo\\app.js",
+      "line": 1,
+      "column": 1,
+      "remediation": "Use textContent instead of innerHTML, or sanitize HTML content."
+    },
+    {
+      "rule_id": "js-eval-injection",
+      "title": "Code Injection via eval()",
+      "message": "Using eval() allows arbitrary code execution.",
+      "severity": "critical",
+      "confidence": "high",
+      "cwe": "CWE-94",
+      "owasp": "A03:2021 - Injection",
+      "file": "examples\\js-vuln-demo\\app.js",
+      "line": 1,
+      "column": 1,
+      "remediation": "Avoid eval() entirely. Use JSON.parse() for data."
+    },
+    {
+      "rule_id": "js-settimeout-string",
+      "title": "Code Injection via setTimeout with String",
+      "message": "Using setTimeout with string allows code injection.",
+      "severity": "high",
+      "confidence": "high",
+      "cwe": "CWE-94",
+      "owasp": "A03:2021 - Injection",
+      "file": "examples\\js-vuln-demo\\app.js",
+      "line": 1,
+      "column": 1,
+      "remediation": "Pass a function reference instead of a string."
+    },
+    {
+      "rule_id": "js-document-write",
+      "title": "Cross-Site Scripting via document.write",
+      "message": "Using document.write can lead to XSS.",
+      "severity": "medium",
+      "confidence": "high",
+      "cwe": "CWE-79",
+      "owasp": "A07:2021 - XSS",
+      "file": "examples\\js-vuln-demo\\app.js",
+      "line": 1,
+      "column": 1,
+      "remediation": "Use DOM manipulation methods instead."
+    },
+    {
+      "rule_id": "js-insecure-random",
+      "title": "Insecure Random Number Generation",
+      "message": "Math.random() is not cryptographically secure.",
+      "severity": "medium",
+      "confidence": "medium",
+      "cwe": "CWE-338",
+      "owasp": "A02:2021 - Cryptographic Failures",
+      "file": "examples\\js-vuln-demo\\app.js",
+      "line": 1,
+      "column": 1,
+      "remediation": "Use crypto.getRandomValues() for security-sensitive operations."
+    },
+    {
+      "rule_id": "js-xss-innerhtml",
+      "title": "Cross-Site Scripting via innerHTML",
+      "message": "Potential XSS vulnerability: User input assigned to innerHTML.",
+      "severity": "high",
+      "confidence": "high",
+      "cwe": "CWE-79",
+      "owasp": "A07:2021 - XSS",
+      "file": "examples\\js-vuln-demo\\app.js",
+      "line": 1,
+      "column": 1,
+      "remediation": "Use textContent instead of innerHTML, or sanitize HTML content."
+    },
+    {
+      "rule_id": "js-eval-injection",
+      "title": "Code Injection via eval()",
+      "message": "Using eval() allows arbitrary code execution.",
+      "severity": "critical",
+      "confidence": "high",
+      "cwe": "CWE-94",
+      "owasp": "A03:2021 - Injection",
+      "file": "examples\\js-vuln-demo\\app.js",
+      "line": 1,
+      "column": 1,
+      "remediation": "Avoid eval() entirely. Use JSON.parse() for data."
+    },
+    {
+      "rule_id": "js-settimeout-string",
+      "title": "Code Injection via setTimeout with String",
+      "message": "Using setTimeout with string allows code injection.",
+      "severity": "high",
+      "confidence": "high",
+      "cwe": "CWE-94",
+      "owasp": "A03:2021 - Injection",
+      "file": "examples\\js-vuln-demo\\app.js",
+      "line": 1,
+      "column": 1,
+      "remediation": "Pass a function reference instead of a string."
+    },
+    {
+      "rule_id": "js-document-write",
+      "title": "Cross-Site Scripting via document.write",
+      "message": "Using document.write can lead to XSS.",
+      "severity": "medium",
+      "confidence": "high",
+      "cwe": "CWE-79",
+      "owasp": "A07:2021 - XSS",
+      "file": "examples\\js-vuln-demo\\app.js",
+      "line": 1,
+      "column": 1,
+      "remediation": "Use DOM manipulation methods instead."
+    },
+    {
+      "rule_id": "js-insecure-random",
+      "title": "Insecure Random Number Generation",
+      "message": "Math.random() is not cryptographically secure.",
+      "severity": "medium",
+      "confidence": "medium",
+      "cwe": "CWE-338",
+      "owasp": "A02:2021 - Cryptographic Failures",
+      "file": "examples\\js-vuln-demo\\app.js",
+      "line": 1,
+      "column": 1,
+      "remediation": "Use crypto.getRandomValues() for security-sensitive operations."
+    }
+  ]
+}

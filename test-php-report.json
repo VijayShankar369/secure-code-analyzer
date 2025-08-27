@@ -1,0 +1,147 @@
+{
+  "version": "0.1.0",
+  "scan_info": {
+    "timestamp": 1756233612.1867023,
+    "tool": "Secure Code Analyzer",
+    "version": "0.1.0"
+  },
+  "summary": {
+    "total_findings": 9,
+    "files_scanned": 1,
+    "duration_seconds": 0.01,
+    "severity_counts": {
+      "critical": 2,
+      "high": 5,
+      "medium": 2,
+      "low": 0,
+      "info": 0
+    },
+    "rule_counts": {
+      "php-sql-injection-concat": 2,
+      "php-file-inclusion-lfi": 2,
+      "php-command-injection": 2,
+      "php-weak-crypto-md5": 2,
+      "taint-php-flow": 1
+    },
+    "scan_timestamp": 1756233612.1805837
+  },
+  "findings": [
+    {
+      "rule_id": "php-sql-injection-concat",
+      "title": "SQL Injection via String Concatenation",
+      "message": "Potential SQL injection vulnerability detected. User input is directly concatenated into SQL query.",
+      "severity": "high",
+      "confidence": "high",
+      "cwe": "CWE-89",
+      "owasp": "A03:2021 - Injection",
+      "file": "examples\\php-vuln-demo\\index.php",
+      "line": 1,
+      "column": 1,
+      "remediation": "Use prepared statements with parameter binding instead of string concatenation."
+    },
+    {
+      "rule_id": "php-file-inclusion-lfi",
+      "title": "Local File Inclusion (LFI) Vulnerability",
+      "message": "Potential Local File Inclusion vulnerability.",
+      "severity": "high",
+      "confidence": "high",
+      "cwe": "CWE-22",
+      "owasp": "A01:2021 - Broken Access Control",
+      "file": "examples\\php-vuln-demo\\index.php",
+      "line": 1,
+      "column": 1,
+      "remediation": "Validate and sanitize file paths. Use a whitelist of allowed files."
+    },
+    {
+      "rule_id": "php-command-injection",
+      "title": "Command Injection Vulnerability",
+      "message": "Command injection vulnerability detected.",
+      "severity": "critical",
+      "confidence": "high",
+      "cwe": "CWE-78",
+      "owasp": "A03:2021 - Injection",
+      "file": "examples\\php-vuln-demo\\index.php",
+      "line": 1,
+      "column": 1,
+      "remediation": "Never pass user input directly to system commands."
+    },
+    {
+      "rule_id": "php-weak-crypto-md5",
+      "title": "Weak Cryptographic Hash (MD5)",
+      "message": "MD5 is cryptographically broken.",
+      "severity": "medium",
+      "confidence": "high",
+      "cwe": "CWE-327",
+      "owasp": "A02:2021 - Cryptographic Failures",
+      "file": "examples\\php-vuln-demo\\index.php",
+      "line": 1,
+      "column": 1,
+      "remediation": "Use password_hash() for passwords or stronger algorithms."
+    },
+    {
+      "rule_id": "php-sql-injection-concat",
+      "title": "SQL Injection via String Concatenation",
+      "message": "Potential SQL injection vulnerability detected. User input is directly concatenated into SQL query.",
+      "severity": "high",
+      "confidence": "high",
+      "cwe": "CWE-89",
+      "owasp": "A03:2021 - Injection",
+      "file": "examples\\php-vuln-demo\\index.php",
+      "line": 1,
+      "column": 1,
+      "remediation": "Use prepared statements with parameter binding instead of string concatenation."
+    },
+    {
+      "rule_id": "php-file-inclusion-lfi",
+      "title": "Local File Inclusion (LFI) Vulnerability",
+      "message": "Potential Local File Inclusion vulnerability.",
+      "severity": "high",
+      "confidence": "high",
+      "cwe": "CWE-22",
+      "owasp": "A01:2021 - Broken Access Control",
+      "file": "examples\\php-vuln-demo\\index.php",
+      "line": 1,
+      "column": 1,
+      "remediation": "Validate and sanitize file paths. Use a whitelist of allowed files."
+    },
+    {
+      "rule_id": "php-command-injection",
+      "title": "Command Injection Vulnerability",
+      "message": "Command injection vulnerability detected.",
+      "severity": "critical",
+      "confidence": "high",
+      "cwe": "CWE-78",
+      "owasp": "A03:2021 - Injection",
+      "file": "examples\\php-vuln-demo\\index.php",
+      "line": 1,
+      "column": 1,
+      "remediation": "Never pass user input directly to system commands."
+    },
+    {
+      "rule_id": "php-weak-crypto-md5",
+      "title": "Weak Cryptographic Hash (MD5)",
+      "message": "MD5 is cryptographically broken.",
+      "severity": "medium",
+      "confidence": "high",
+      "cwe": "CWE-327",
+      "owasp": "A02:2021 - Cryptographic Failures",
+      "file": "examples\\php-vuln-demo\\index.php",
+      "line": 1,
+      "column": 1,
+      "remediation": "Use password_hash() for passwords or stronger algorithms."
+    },
+    {
+      "rule_id": "taint-php-flow",
+      "title": "Potential Taint Flow",
+      "message": "Untrusted data from _GET may reach dangerous sink system",
+      "severity": "high",
+      "confidence": "medium",
+      "cwe": "CWE-20",
+      "owasp": "A03:2021 - Injection",
+      "file": "examples\\php-vuln-demo\\index.php",
+      "line": 1,
+      "column": 1,
+      "remediation": "Validate and sanitize input before using in sensitive operations"
+    }
+  ]
+}

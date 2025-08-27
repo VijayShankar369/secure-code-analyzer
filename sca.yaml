@@ -1,0 +1,53 @@
+# Secure Code Analyzer Configuration
+
+rules:
+  enabled: []  # Empty list means all rules enabled
+  disabled: []
+
+severity:
+  min_level: "info"
+  fail_on: "high"
+
+files:
+  include:
+    - "**/*.php"
+    - "**/*.js"
+    - "**/*.jsx"
+    - "**/*.ts"
+    - "**/*.tsx"
+  exclude:
+    - "**/node_modules/**"
+    - "**/vendor/**"
+    - "**/build/**"
+    - "**/dist/**"
+    - "**/.git/**"
+    - "**/tests/**"
+    - "**/test/**"
+  max_size: 1048576  # 1MB
+
+performance:
+  max_workers: 4
+  timeout_seconds: 300
+
+taint:
+  enabled: true
+  sources:
+    - "_GET"
+    - "_POST"
+    - "_REQUEST"
+    - "_COOKIE"
+    - "_SERVER"
+    - "_FILES"
+    - "process.argv"
+    - "process.env"
+    - "window.location"
+    - "document.cookie"
+  sinks:
+    - "eval"
+    - "exec"
+    - "system"
+    - "shell_exec"
+    - "mysql_query"
+    - "document.write"
+    - "innerHTML"
+    - "outerHTML"

@@ -1,0 +1,92 @@
+# JavaScript Security Rules for Secure Code Analyzer
+
+rules:
+  - id: js-xss-innerhtml
+    title: "Cross-Site Scripting via innerHTML"
+    languages: 
+      - javascript
+    severity: high
+    confidence: high
+    cwe: CWE-79
+    owasp: "A07:2021 - XSS"
+    message: "Potential XSS vulnerability: User input assigned to innerHTML."
+    remediation: "Use textContent instead of innerHTML, or sanitize HTML content."
+    pattern:
+      - contains: "innerHTML"
+    examples:
+      positive:
+        - 'element.innerHTML = userInput;'
+      negative:
+        - 'element.textContent = userInput;'
+
+  - id: js-eval-injection
+    title: "Code Injection via eval()"
+    languages: 
+      - javascript
+    severity: critical
+    confidence: high
+    cwe: CWE-94
+    owasp: "A03:2021 - Injection"
+    message: "Using eval() allows arbitrary code execution."
+    remediation: "Avoid eval() entirely. Use JSON.parse() for data."
+    pattern:
+      - contains: "eval("
+    examples:
+      positive:
+        - 'eval(userInput);'
+      negative:
+        - 'JSON.parse(userInput);'
+
+  - id: js-settimeout-string
+    title: "Code Injection via setTimeout with String"
+    languages: 
+      - javascript
+    severity: high
+    confidence: high
+    cwe: CWE-94
+    owasp: "A03:2021 - Injection"
+    message: "Using setTimeout with string allows code injection."
+    remediation: "Pass a function reference instead of a string."
+    pattern:
+      - contains: "setTimeout("
+    examples:
+      positive:
+        - 'setTimeout("alert(1)", 1000);'
+      negative:
+        - 'setTimeout(() => alert(1), 1000);'
+
+  - id: js-document-write
+    title: "Cross-Site Scripting via document.write"
+    languages: 
+      - javascript
+    severity: medium
+    confidence: high
+    cwe: CWE-79
+    owasp: "A07:2021 - XSS"
+    message: "Using document.write can lead to XSS."
+    remediation: "Use DOM manipulation methods instead."
+    pattern:
+      - contains: "document.write("
+    examples:
+      positive:
+        - 'document.write(userInput);'
+      negative:
+        - 'element.textContent = userInput;'
+
+  - id: js-insecure-random
+    title: "Insecure Random Number Generation"
+    languages: 
+      - javascript
+    severity: medium
+    confidence: medium
+    cwe: CWE-338
+    owasp: "A02:2021 - Cryptographic Failures"
+    message: "Math.random() is not cryptographically secure."
+    remediation: "Use crypto.getRandomValues() for security-sensitive operations."
+    pattern:
+      - contains: "Math.random("
+    examples:
+      positive:
+        - 'const token = Math.random().toString(36);'
+      negative:
+        - 'crypto.getRandomValues(new Uint32Array(1));'

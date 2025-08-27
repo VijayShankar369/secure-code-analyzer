@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  sca:
+    build: .
+    image: secure-code-analyzer:latest
+    container_name: sca-scanner
+    volumes:
+      - .:/code:ro
+      - ./reports:/reports
+    working_dir: /code
+    environment:
+      - SCA_OUTPUT_DIR=/reports
+    command: ["scan", "/code", "--json", "/reports/report.json", "--sarif", "/reports/report.sarif"]
+    
+  sca-dev:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: sca-dev:latest
+    container_name: sca-dev
+    volumes:
+      - .:/app
+      - /app/src/sca/__pycache__
+    working_dir: /app
+    environment:
+      - PYTHONPATH=/app/src
+      - SCA_RULES_DIR=/app/rules
+    command: ["bash"]
+    stdin_open: true
+    tty: true
+
+  # For CI/CD pipeline use
+  sca-ci:
+    build: .
+    image: secure-code-analyzer:latest
+    volumes:
+      - .:/workspace:ro
+      - ./ci-reports:/ci-reports
+    working_dir: /workspace
+    environment:
+      - CI=true
+      - SCA_OUTPUT_DIR=/ci-reports
+    command: [
+      "scan", "/workspace", 
+      "--json", "/ci-reports/security.json",
+      "--sarif", "/ci-reports/security.sarif",
+      "--fail-on", "high"
+    ]
